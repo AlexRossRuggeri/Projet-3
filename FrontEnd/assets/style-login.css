@@ -107,6 +107,7 @@ body {
   margin: auto;
   font-family: "Work Sans";
   font-size: 14px;
+  background-color: #fffef8;
 }
 header {
   display: flex;
@@ -139,12 +140,6 @@ h2 {
   color: #1d6154;
 }
 
-#log-title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 nav ul {
   display: flex;
   align-items: center;
@@ -168,4 +163,59 @@ a {
 
 a:hover {
   color: #b1663c;
+}
+
+/** Login **/
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-title {
+  padding: 37px 93px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  padding-bottom: 7px;
+}
+
+input {
+  height: 51px;
+  width: 379px;
+  box-shadow: 0px 4px 14px 0px #00000017;
+  border: none;
+  margin-bottom: 30px;
+}
+
+button[type="submit"] {
+  font-family: "Syne";
+  font-weight: 700;
+  color: white;
+  background-color: #1d6154;
+  margin: 7px auto 28px auto;
+  width: 179px;
+  height: 36px;
+  text-align: center;
+  border-radius: 60px;
+}
+
+.forgot-password-link {
+}
+
+footer {
+  margin-top: 305px;
+}
+
+footer nav ul {
+  display: flex;
+  justify-content: flex-end;
+  margin: 2em;
 }
