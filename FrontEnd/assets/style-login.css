@@ -133,6 +133,21 @@ h1 > span {
   letter-spacing: 0.1em;
 }
 
+.logo-link {
+  display: flex;
+  flex-direction: column;
+  font-family: "Syne";
+  font-size: 22px;
+  font-weight: 800;
+  color: #b1663c;
+}
+
+.logo-link > span {
+  font-family: "Work Sans";
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
 h2 {
   font-family: "Syne";
   font-weight: 700;
