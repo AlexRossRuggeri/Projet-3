@@ -38,3 +38,22 @@ const projects = [
 // numerosLoto.forEach((num) => {
 //   console.log(num);
 // });
+
+function displayProjects(projects) {
+  projects.forEach((project) => {
+    const figure = document.createElement("figure");
+    const img = document.createElement("img");
+    const caption = document.createElement("figcaption");
+
+    img.src = project.imageUrl;
+    img.alt = project.title;
+    caption.textContent = project.title;
+
+    figure.append(img, caption);
+
+    document.querySelector(".gallery").appendChild(figure);
+  });
+}
+
+// Execution
+displayProjects(projects);

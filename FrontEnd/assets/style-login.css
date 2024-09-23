@@ -205,9 +205,11 @@ button[type="submit"] {
   height: 36px;
   text-align: center;
   border-radius: 60px;
+  cursor: pointer;
 }
 
 .forgot-password-link {
+  text-decoration: underline;
 }
 
 footer {
