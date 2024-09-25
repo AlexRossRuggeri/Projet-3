@@ -40,16 +40,16 @@ const projects = [
 // });
 
 function displayProjects(projects) {
-  projects.forEach((project) => {
+  projects.forEach((projects) => {
     const figure = document.createElement("figure");
     const img = document.createElement("img");
     const caption = document.createElement("figcaption");
 
-    img.src = project.imageUrl;
-    img.alt = project.title;
-    caption.textContent = project.title;
+    img.src = projects.imageUrl;
+    img.alt = projects.title;
+    caption.textContent = projects.title;
 
-    figure.append(img, caption);
+    figure.appendChild(img, caption);
 
     document.querySelector(".gallery").appendChild(figure);
   });
