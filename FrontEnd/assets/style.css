@@ -217,6 +217,41 @@ li:hover {
 #introduction p {
   margin-bottom: 0.5em;
 }
+
+.filter-bar {
+  display: flex;
+  justify-content: center;
+  margin: 51px 0px;
+}
+
+.filter-menu {
+  display: flex;
+  gap: 10px;
+}
+
+.filter-button {
+  cursor: pointer;
+  font-size: 16px;
+  padding: 9px 20px;
+  border-radius: 25px;
+  border: 1px solid #1d6154;
+  font-weight: 700;
+  background-color: unset;
+  height: 38px;
+  font-family: "Syne";
+  color: #1d6154;
+}
+
+.filter-button:hover {
+  background-color: #1d6154;
+  color: white;
+}
+
+.filter-button:active {
+  background-color: #1d6154;
+  color: white;
+}
+
 #portfolio h2 {
   text-align: center;
   margin-bottom: 1em;
