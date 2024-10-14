@@ -1,5 +1,3 @@
-import { authService } from "./lib/dependencies.js";
-
 // let form = document.querySelector("form");
 // let baliseEmail = document.getElementById("email");
 // let balisePassword = document.getElementById("password");
@@ -28,6 +26,10 @@ import { authService } from "./lib/dependencies.js";
 //   verifierChamps(baliseEmail, balisePassword);
 // });
 
+//Code à garder//
+
+import { authService } from "./lib/dependencies.js";
+
 const validEmail = "alexandre.rossruggeri@gmail.com";
 const validPassword = "password123";
 
@@ -35,7 +37,7 @@ const form = document.querySelector("form");
 const errorMessage = document.getElementById("errorMessage");
 
 form.addEventListener("submit", async function (event) {
-  errorMessage.textContent = "";
+  errorMessage.textContent = "Email ou mot de passe incorrect";
   event.preventDefault();
 
   const email = document.querySelector("form input#email").value;

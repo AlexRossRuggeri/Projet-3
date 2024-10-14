@@ -6,13 +6,11 @@ async function login(email, password) {
     localStorage.setItem("logged", true);
     return Promise.resolve();
   }
-
   return Promise.reject("Invalid email or password!");
 }
 
 async function logout() {
-  a;
-  localStorage.setItem("logged", true);
+  localStorage.setItem("logged", false); // Corrected this line
   return Promise.resolve();
 }
 

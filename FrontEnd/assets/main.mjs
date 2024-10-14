@@ -4,11 +4,8 @@ import {
   projectService,
 } from "./lib/dependencies.js";
 
-if (authService.isLogged()) {
-  document.querySelector("#test_logged").textContent = "Je suis loggé !";
-} else {
-  document.querySelector("#test_logged").textContent =
-    "Je ne suis pas loggé :-(";
+function enableEditModeWhenLogged() {
+  document.body.classList.toggle("edit-mode", authService.isLogged());
 }
 
 function displayProjects(projects) {
@@ -21,15 +18,40 @@ function displayProjects(projects) {
     img.alt = projects.title;
     caption.textContent = projects.title;
 
-    figure.appendChild(img, caption);
+    figure.appendChild(img);
+    figure.appendChild(caption);
 
     document.querySelector(".gallery").appendChild(figure);
   });
 }
 
-async function init() {
-  displayProjects(await projectService.fetchAllProjects());
-}
+//Gestion des Boutons
+document.querySelectorAll(".filter-button").forEach(function (boutonFiltre) {
+  boutonFiltre.addEventListener("click", function (event) {
+    const clickedbutton = event.target;
+    const projetsFiltres = projects.filter(function (project) {
+      return (
+        clickedbutton.textContent === "Tous" ||
+        project.category === clickedbutton.textContent
+      );
+    });
+
+    document.querySelector(".gallery").innerHTML = "";
+    displayProjects(projetsFiltres);
+  });
+});
+
+document.querySelector(".logout-link").addEventListener("click", async () => {
+  try {
+    await authService.logout();
+    alert("You have successfully logged out.");
+    window.location.href = "index.html";
+  } catch (error) {
+    console.error("Logout failed:", error);
+  }
+});
 
 // Execution
-init();
+const projects = await projectService.fetchAllProjects();
+displayProjects(projects);
+enableEditModeWhenLogged();

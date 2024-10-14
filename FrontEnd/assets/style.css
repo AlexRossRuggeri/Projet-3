@@ -247,14 +247,13 @@ li:hover {
   color: white;
 }
 
-.filter-button:active {
+.filter-button:focus {
   background-color: #1d6154;
   color: white;
 }
 
 #portfolio h2 {
   text-align: center;
-  margin-bottom: 1em;
 }
 .gallery {
   width: 100%;
@@ -324,4 +323,53 @@ a {
 
 a:hover {
   color: #b1663c;
+}
+
+nav > ul > li:has(> a.logout-link) {
+  display: none;
+}
+
+.banner {
+  display: none;
+}
+
+/**Mode Edition**/
+body.edit-mode .banner {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  background-color: black;
+  color: white;
+  padding: 19.5px 0 20.5px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+body.edit-mode .edition-link {
+  gap: 10px;
+}
+
+body.edit-mode header {
+  /* 50 is the default margin + 54 is the computed height of the banner */
+  margin-top: calc(38px + 54px);
+}
+
+body.edit-mode nav li:has(> a.login-link) {
+  display: none;
+}
+
+body.edit-mode nav li:has(> a.logout-link) {
+  display: block;
+}
+
+body.edit-mode .filter-bar {
+  display: none;
+}
+
+body.edit-mode .edit-title {
+  margin-bottom: 92px;
+  display: flex;
+  justify-content: center;
 }
