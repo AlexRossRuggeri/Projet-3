@@ -333,6 +333,10 @@ nav > ul > li:has(> a.logout-link) {
   display: none;
 }
 
+.edit-link {
+  display: none;
+}
+
 /**Mode Edition**/
 body.edit-mode .banner {
   display: flex;
@@ -347,8 +351,15 @@ body.edit-mode .banner {
   right: 0;
 }
 
-body.edit-mode .edition-link {
+body.edit-mode .edit-title {
+  gap: 30px;
+  display: flex;
+  align-items: center;
+}
+
+body.edit-mode .edit-link {
   gap: 10px;
+  display: flex;
 }
 
 body.edit-mode header {
