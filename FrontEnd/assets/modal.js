@@ -80,6 +80,8 @@ window.addEventListener("keydown", function (event) {
 });
 
 //Displaying gallery in the modal window//
-const gallery = modal.querySelector(".gallery-modal");
+const displayGalleryModal = function () {
+  const gallery = modal.querySelector(".gallery-modal");
+};
 
 forEach;
