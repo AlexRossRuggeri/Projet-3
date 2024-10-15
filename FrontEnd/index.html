@@ -34,13 +34,14 @@
       <nav>
         <ul>
           <li><a href="index.html">projets</a></li>
-          <li>contact</li>
+          <li><a href= #contact>contact</a></li>
           <li><a href="./login.html" class="login-link">login</a></li>
           <li><a href="index.html" class="logout-link">logout</a></li>
-          <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
+          <li><a href= "https://www.instagram.com/"><img src="./assets/icons/instagram.png" alt="Instagram" /></a></li>
         </ul>
       </nav>
     </header>
+
     <main>
       <section id="introduction">
         <figure>
@@ -65,14 +66,36 @@
           </p>
         </article>
       </section>
+
       <section id="portfolio">
         <div class="edit-title">
           <h2>Mes Projets</h2>
-          <a href="#myModal" class="edit-link">
+          <a href="#modal1" class= "js-modal" id="edit-link">
             <i class="fa-regular fa-pen-to-square"></i>
             modifier
           </a>
+          <aside
+            id="modal1"
+            class="modal"
+            aria-hidden="true"
+            role="dialog"
+            aria-labelledby="title-modal"
+            aria-modal="false"
+            style="display: none;"
+            >
+            <div class="modal-wrapper js-modal-stop">
+              <button class="js-modal-close">&times;</button>
+              <h3 id="title-modal">Galerie photo</h3>
+              <div class="gallery-modal">
+              </div>
+              <div>
+              <a href="#modal2" class= "add-link js-modal">Ajouter une photo</a>
+              </div>
+              <a href="#modal3" class= "add-link js-modal">Ajouter une video</a>
+            </div>
+          </aside>
         </div>
+    </div>
         <div class="filter-bar">
           <nav class="filter-menu">
             <button class="filter-button">Tous</button>
@@ -83,6 +106,7 @@
         </div>
         <div class="gallery"></div>
       </section>
+
       <section id="contact">
         <h2>Contact</h2>
         <p>Vous avez un projet ? Discutons-en !</p>
@@ -107,5 +131,6 @@
     </footer>
 
     <script type="module" src="./assets/main.mjs"></script>
+    <script src="./assets/modal.js"></script>
   </body>
 </html>
