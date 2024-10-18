@@ -11,7 +11,3 @@ class AuthProvider {
     throw new Error("You must extend this object to implement this method");
   }
 }
-
-class helloAuthProvider extends AuthProvider {
-  login() {}
-}

@@ -81,19 +81,46 @@
             role="dialog"
             aria-labelledby="title-modal"
             aria-modal="false"
-            style="display: none;"
             >
             <div class="modal-wrapper js-modal-stop">
               <button class="js-modal-close">&times;</button>
               <h3 id="title-modal">Galerie photo</h3>
               <div class="gallery-modal">
               </div>
-              <div>
+              <div class="add-button">
               <a href="#modal2" class= "add-link js-modal">Ajouter une photo</a>
               </div>
-              <a href="#modal3" class= "add-link js-modal">Ajouter une video</a>
             </div>
           </aside>
+
+          <aside
+          id="modal2"
+          class="modal"
+          aria-hidden="true"
+          role="dialog"
+          aria-labelledby="title-modal"
+          aria-modal="false"
+          style="display: none;"
+          >
+          <div class="modal-wrapper js-modal-stop">
+            <button class="js-modal-close">&times;</button>
+            <h3 id="title-modal">Ajout Photo</h3>
+                <form action="/upload" method="post" enctype="multipart/form-data" class="formulaire-ajout">
+                    <input type="file" id="file" name="file">
+                  <label for="Titre">Titre</label>
+                    <input type="text" name="Titre"><br>
+                  <label for="Catégorie">Catégorie</label>
+                    <select  id="options" name="options">
+                      <option value="option1">Option 1</option>
+                      <option value="option2">Option 2</option>
+                      <option value="option3">Option 3</option>
+                    </select>
+            <div class="add-button">
+            <button type="submit">Valider</button>
+            </div>
+          </form>
+          </div>
+        </aside>
         </div>
     </div>
         <div class="filter-bar">
@@ -131,6 +158,5 @@
     </footer>
 
     <script type="module" src="./assets/main.mjs"></script>
-    <script src="./assets/modal.js"></script>
   </body>
 </html>

@@ -1,4 +1,4 @@
-import * as fakeLoginService from "./auth/adapters/fakeLogin.js";
+import * as fakeLoginService from "./auth/adapters/fakeAuthProvider.js";
 
 const authService = fakeLoginService;
 const projectService = {

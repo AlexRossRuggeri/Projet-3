@@ -3,6 +3,7 @@ import {
   categoryService,
   projectService,
 } from "./lib/dependencies.js";
+import { bindModalOpeneners } from "./lib/modal.js";
 
 function enableEditModeWhenLogged() {
   document.body.classList.toggle("edit-mode", authService.isLogged());
@@ -55,3 +56,4 @@ document.querySelector(".logout-link").addEventListener("click", async () => {
 const projects = await projectService.fetchAllProjects();
 displayProjects(projects);
 enableEditModeWhenLogged();
+bindModalOpeneners();
