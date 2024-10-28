@@ -3,7 +3,14 @@ import {
   categoryService,
   projectService,
 } from "./lib/dependencies.js";
-import { bindModalOpeneners } from "./lib/modal.js";
+import {
+  openModal,
+  closeModal,
+  editTitleModal,
+  editContentModal,
+  editActionsModal,
+} from "./lib/modal.js";
+import { initProjectEditionGallery } from "./lib/projectEdition/gallery.js";
 
 function enableEditModeWhenLogged() {
   document.body.classList.toggle("edit-mode", authService.isLogged());
@@ -42,6 +49,17 @@ document.querySelectorAll(".filter-button").forEach(function (boutonFiltre) {
   });
 });
 
+document.querySelector("#edit-link").addEventListener("click", () => {
+  openModal("#modalProjectEditing");
+
+  const { title, gallery, addProjectButton } =
+    initProjectEditionGallery(projects);
+
+  editTitleModal(title);
+  editContentModal(gallery);
+  editActionsModal(addProjectButton);
+});
+
 document.querySelector(".logout-link").addEventListener("click", async () => {
   try {
     await authService.logout();
@@ -54,6 +72,6 @@ document.querySelector(".logout-link").addEventListener("click", async () => {
 
 // Execution
 const projects = await projectService.fetchAllProjects();
+
 displayProjects(projects);
 enableEditModeWhenLogged();
-bindModalOpeneners();

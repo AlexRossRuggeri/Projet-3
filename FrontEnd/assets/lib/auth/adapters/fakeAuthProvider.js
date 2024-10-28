@@ -5,12 +5,13 @@ async function login(email, password) {
   if (email === fakeValidEmail && password === fakeValidPassword) {
     localStorage.setItem("logged", true);
     return Promise.resolve();
+  } else {
+    return Promise.reject("Invalid email or password!");
   }
-  return Promise.reject("Invalid email or password!");
 }
 
 async function logout() {
-  localStorage.setItem("logged", false); // Corrected this line
+  localStorage.setItem("logged", false);
   return Promise.resolve();
 }
 

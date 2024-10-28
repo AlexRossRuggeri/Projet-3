@@ -1,47 +1,13 @@
-import { projectService } from "./dependencies.js";
-
 let modal = null;
-
-const focusableSelector = "button, a, input, textarea";
 let focusables = [];
-
 let previouslyFocusedElement = null;
+const focusableSelector = "button, a, input, textarea";
 
-const populateModal = function (projects) {
-  const modalContent = modal.querySelector(".gallery-modal");
-  modalContent.innerHTML = "";
+const openModal = async function (modalId) {
+  modal = document.querySelector(modalId);
 
-  projects.forEach((project, index) => {
-    const projectElement = document.createElement("div");
-    projectElement.classList.add("project");
+  if (!modal) throw new Error('Modal "' + modalId + '" not found!');
 
-    projectElement.innerHTML = `
-        <img src="${project.imageUrl}" alt="${project.title}">
-         <button class="remove-project" aria-label="Remove project" data-index="${index}">
-            <i class="fa-solid fa-trash-can"></i>
-        </button>
-      `;
-
-    modalContent.appendChild(projectElement);
-  });
-
-  const removeButtons = modalContent.querySelectorAll(".remove-project");
-  removeButtons.forEach((button) => {
-    button.addEventListener("click", removeProject);
-  });
-};
-
-const removeProject = function (event) {
-  const index = event.target
-    .closest(".remove-project")
-    .getAttribute("data-index");
-  projectService.removeProject(index);
-  populateModal(projectService.fetchAllProjects());
-};
-
-const openModal = async function (event) {
-  event.preventDefault();
-  modal = document.querySelector(event.target.getAttribute("href"));
   focusables = Array.from(modal.querySelectorAll(focusableSelector));
   previouslyFocusedElement = document.querySelector(":focus");
   modal.style.display = null;
@@ -54,18 +20,12 @@ const openModal = async function (event) {
   modal
     .querySelector(".js-modal-stop")
     .addEventListener("click", stopPropagation);
-
-  const projects = await projectService.fetchAllProjects();
-
-  populateModal(projects);
 };
 
-const closeModal = function (event) {
+const closeModal = function () {
   if (modal === null) return;
-  if (previouslyFocusedElement !== null) {
-    previouslyFocusedElement.focus();
-  }
-  event.preventDefault();
+  if (previouslyFocusedElement !== null) previouslyFocusedElement.focus();
+
   modal.classList.add("modal-closing");
   modal.setAttribute("aria-hidden", "true");
   modal.removeAttribute("aria-modal");
@@ -82,8 +42,27 @@ const closeModal = function (event) {
 
     modal.removeEventListener("animationend", onAnimationEnd);
     modal.classList.remove("modal-open", "modal-closing");
+    clearModal();
     modal = null;
   });
+};
+
+const editTitleModal = function (title) {
+  modal.querySelector(".title-modal").textContent = title;
+};
+
+const editContentModal = function (content) {
+  modal.querySelector(".content-modal").appendChild(content);
+};
+
+const editActionsModal = function (actions) {
+  modal.querySelector(".actions-modal").appendChild(actions);
+};
+
+const clearModal = function () {
+  editTitleModal("");
+  modal.querySelector(".content-modal").innerHTML = "";
+  modal.querySelector(".actions-modal").innerHTML = "";
 };
 
 const stopPropagation = function (event) {
@@ -92,12 +71,6 @@ const stopPropagation = function (event) {
 
 const focusInModal = function (event) {
   event.preventDefault();
-};
-
-const bindModalOpeneners = function () {
-  document.querySelectorAll(".js-modal").forEach((a) => {
-    a.addEventListener("click", openModal);
-  });
 };
 
 window.addEventListener("keydown", function (event) {
@@ -127,4 +100,10 @@ window.addEventListener("keydown", function (event) {
   }
 });
 
-export { bindModalOpeneners };
+export {
+  openModal,
+  closeModal,
+  editTitleModal,
+  editContentModal,
+  editActionsModal,
+};

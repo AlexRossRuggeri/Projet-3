@@ -34,10 +34,14 @@
       <nav>
         <ul>
           <li><a href="index.html">projets</a></li>
-          <li><a href= #contact>contact</a></li>
+          <li><a href="#contact">contact</a></li>
           <li><a href="./login.html" class="login-link">login</a></li>
           <li><a href="index.html" class="logout-link">logout</a></li>
-          <li><a href= "https://www.instagram.com/"><img src="./assets/icons/instagram.png" alt="Instagram" /></a></li>
+          <li>
+            <a href="https://www.instagram.com/"
+              ><img src="./assets/icons/instagram.png" alt="Instagram"
+            /></a>
+          </li>
         </ul>
       </nav>
     </header>
@@ -45,7 +49,10 @@
     <main>
       <section id="introduction">
         <figure>
-          <img src="./assets/images/sophie-bluel.png" alt="" />
+          <img
+            src="./assets/images/sophie-bluel.png"
+            alt="Portrait de Sophie Bluel, architecte d'intérieur"
+          />
         </figure>
         <article>
           <h2>Designer d'espace</h2>
@@ -70,59 +77,12 @@
       <section id="portfolio">
         <div class="edit-title">
           <h2>Mes Projets</h2>
-          <a href="#modal1" class= "js-modal" id="edit-link">
+          <a href="#" id="edit-link">
             <i class="fa-regular fa-pen-to-square"></i>
             modifier
           </a>
-          <aside
-            id="modal1"
-            class="modal"
-            aria-hidden="true"
-            role="dialog"
-            aria-labelledby="title-modal"
-            aria-modal="false"
-            >
-            <div class="modal-wrapper js-modal-stop">
-              <button class="js-modal-close">&times;</button>
-              <h3 id="title-modal">Galerie photo</h3>
-              <div class="gallery-modal">
-              </div>
-              <div class="add-button">
-              <a href="#modal2" class= "add-link js-modal">Ajouter une photo</a>
-              </div>
-            </div>
-          </aside>
-
-          <aside
-          id="modal2"
-          class="modal"
-          aria-hidden="true"
-          role="dialog"
-          aria-labelledby="title-modal"
-          aria-modal="false"
-          style="display: none;"
-          >
-          <div class="modal-wrapper js-modal-stop">
-            <button class="js-modal-close">&times;</button>
-            <h3 id="title-modal">Ajout Photo</h3>
-                <form action="/upload" method="post" enctype="multipart/form-data" class="formulaire-ajout">
-                    <input type="file" id="file" name="file">
-                  <label for="Titre">Titre</label>
-                    <input type="text" name="Titre"><br>
-                  <label for="Catégorie">Catégorie</label>
-                    <select  id="options" name="options">
-                      <option value="option1">Option 1</option>
-                      <option value="option2">Option 2</option>
-                      <option value="option3">Option 3</option>
-                    </select>
-            <div class="add-button">
-            <button type="submit">Valider</button>
-            </div>
-          </form>
-          </div>
-        </aside>
         </div>
-    </div>
+
         <div class="filter-bar">
           <nav class="filter-menu">
             <button class="filter-button">Tous</button>
@@ -139,9 +99,9 @@
         <p>Vous avez un projet ? Discutons-en !</p>
         <form action="#" method="post">
           <label for="name">Nom</label>
-          <input type="text" name="name" id="name" />
+          <input type="text" name="name" id="name" required />
           <label for="email">Email</label>
-          <input type="email" name="email" id="email" />
+          <input type="email" name="email" id="email" required />
           <label for="message">Message</label>
           <textarea name="message" id="message" cols="30" rows="10"></textarea>
           <input type="submit" value="Envoyer" />
@@ -156,6 +116,22 @@
         </ul>
       </nav>
     </footer>
+
+    <aside
+      id="modalProjectEditing"
+      class="modal"
+      aria-hidden="true"
+      role="dialog"
+      aria-labelledby="title-modal"
+      aria-modal="false"
+    >
+      <div class="modal-wrapper js-modal-stop">
+        <button class="js-modal-close">&times;</button>
+        <h3 class="title-modal"></h3>
+        <div class="content-modal"></div>
+        <div class="actions-modal"></div>
+      </div>
+    </aside>
 
     <script type="module" src="./assets/main.mjs"></script>
   </body>

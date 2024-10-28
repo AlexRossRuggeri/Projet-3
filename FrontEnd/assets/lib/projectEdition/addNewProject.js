@@ -1,0 +1,3 @@
+function initAddNewProject() {}
+
+export { initAddNewProject };

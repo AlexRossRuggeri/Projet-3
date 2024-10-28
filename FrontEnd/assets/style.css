@@ -438,7 +438,7 @@ body.edit-mode .edit-title {
   cursor: pointer;
 }
 
-#title-modal {
+.title-modal {
   font-family: Work Sans;
   font-size: 26px;
   font-weight: 400;
@@ -446,7 +446,7 @@ body.edit-mode .edit-title {
   margin: 40px 40px 46px 40px;
 }
 
-.add-button {
+.actions-modal {
   display: flex;
   align-items: center;
   justify-content: center;
