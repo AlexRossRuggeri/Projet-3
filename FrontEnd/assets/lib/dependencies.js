@@ -62,6 +62,14 @@ const projectService = {
     ];
   },
 };
-const categoryService = {};
+const categoryService = {
+  async fetchAllCategories() {
+    return [
+      { id: "object", name: "Objets" },
+      { id: "appartement", name: "Appartements" },
+      { id: "hotel_restaurant", name: "Hotels & restaurants" },
+    ];
+  },
+};
 
 export { authService, projectService, categoryService };

@@ -106,4 +106,5 @@ export {
   editTitleModal,
   editContentModal,
   editActionsModal,
+  clearModal,
 };

@@ -1,5 +1,4 @@
 let gallery;
-let addProjectButton;
 
 function populateGallery(projects) {
   projects.forEach((project, index) => {
@@ -17,13 +16,13 @@ function populateGallery(projects) {
   });
 }
 
-function initProjectEditionGallery(projects) {
+function projectEditionGalleryUI(projects) {
   gallery = document.createElement("div");
   gallery.classList.add("gallery-modal");
 
   populateGallery(projects);
 
-  addProjectButton = document.createElement("button");
+  const addProjectButton = document.createElement("button");
   addProjectButton.classList.add("add-link");
   addProjectButton.textContent = "Ajouter une photo";
 
@@ -34,4 +33,4 @@ function initProjectEditionGallery(projects) {
   };
 }
 
-export { initProjectEditionGallery };
+export { projectEditionGalleryUI };

@@ -6,11 +6,13 @@ import {
 import {
   openModal,
   closeModal,
+  clearModal,
   editTitleModal,
   editContentModal,
   editActionsModal,
 } from "./lib/modal.js";
-import { initProjectEditionGallery } from "./lib/projectEdition/gallery.js";
+import { projectEditionGalleryUI } from "./lib/projectEdition/gallery.js";
+import { newProjectFormUI } from "./lib/projectEdition/newProjectForm.js";
 
 function enableEditModeWhenLogged() {
   document.body.classList.toggle("edit-mode", authService.isLogged());
@@ -53,11 +55,32 @@ document.querySelector("#edit-link").addEventListener("click", () => {
   openModal("#modalProjectEditing");
 
   const { title, gallery, addProjectButton } =
-    initProjectEditionGallery(projects);
+    projectEditionGalleryUI(projects);
 
   editTitleModal(title);
   editContentModal(gallery);
   editActionsModal(addProjectButton);
+
+  addProjectButton.addEventListener("click", async () => {
+    clearModal();
+
+    const { title, form, submitButton } = newProjectFormUI(
+      await categoryService.fetchAllCategories()
+    );
+
+    editTitleModal(title);
+    editContentModal(form);
+    editActionsModal(submitButton);
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      console.log(new FormData(form));
+      // 1 - Valider que le formulaire est bien valide
+      // 2 - Lancer une méthode sur projectService permettant d'ajouter le projet sur le service externe (dans le futur: l'api, pour le moment, c'est fake)
+      // 3 - Si ça s'est bien passé, trouver un moyen de revenir sur la première étape de la modale => liste des projets
+      // 4 - Si ça s'est bien passé, trouver un moyen de mettre à jour la gallerie sur la page principale
+    });
+  });
 });
 
 document.querySelector(".logout-link").addEventListener("click", async () => {

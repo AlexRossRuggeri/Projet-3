@@ -540,3 +540,35 @@ body.edit-mode .edit-title {
   cursor: pointer;
   border-radius: 2px;
 }
+
+.formulaire-ajout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  padding-bottom: 10px;
+}
+
+.formulaire-ajout input {
+  display: flex;
+  height: 51px;
+  width: 420px;
+  box-shadow: 0px 4px 14px 0px #00000017;
+  border: none;
+  margin-bottom: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+.formulaire-ajout select {
+  display: flex;
+  height: 51px;
+  width: 420px;
+  box-shadow: 0px 4px 14px 0px #00000017;
+  border: none;
+  margin-bottom: 30px;
+  justify-content: center;
+  align-items: center;
+}
