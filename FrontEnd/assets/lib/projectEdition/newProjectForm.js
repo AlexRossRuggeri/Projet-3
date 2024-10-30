@@ -1,20 +1,3 @@
-function initAddNewProject() {
-  const addForm = document.createElement("div");
-  addForm.classList.add("add-form");
-  addForm.innerHTML = `
-        <form
-          action="/upload"
-          method="post"
-          enctype="multipart/form-data"
-          class="formulaire-ajout"
-        >
-
-        </form>
-      `;
-
-  editContentModal(addForm);
-}
-
 function newProjectFormUI(categories) {
   const form = document.createElement("form");
 
