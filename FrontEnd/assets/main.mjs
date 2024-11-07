@@ -74,7 +74,10 @@ document.querySelector("#edit-link").addEventListener("click", () => {
 
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
-      console.log(new FormData(form));
+      const formData = new FormData(form);
+      for (const values of formData.values()) {
+        console.log(values);
+      }
       // 1 - Valider que le formulaire est bien valide
       // 2 - Lancer une méthode sur projectService permettant d'ajouter le projet sur le service externe (dans le futur: l'api, pour le moment, c'est fake)
       // 3 - Si ça s'est bien passé, trouver un moyen de revenir sur la première étape de la modale => liste des projets
