@@ -514,7 +514,7 @@ body.edit-mode .edit-title {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   gap: 9px;
   padding-bottom: 67px;
-  margin: 0 100px 38px 100px;
+  margin: 0 75px 38px 75px;
   border-bottom: 1px solid #b3b3b3;
 }
 
@@ -572,3 +572,5 @@ label {
   justify-content: center;
   align-items: center;
 }
+
+/* Modal New Project Form */

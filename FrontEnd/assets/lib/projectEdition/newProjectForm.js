@@ -5,9 +5,10 @@ function newProjectFormUI(categories) {
   form.classList.add("formulaire-ajout");
 
   form.innerHTML = `
+    <i class="fa-regular fa-image"></i>
     <input type="file" id="file" name="file" />
     <label for="Titre">Titre</label>
-    <input type="text" name="Titre" /><br />
+    <input type="text" name="titre" /><br />
     <label for="Catégorie">Catégorie</label>
   `;
 
@@ -38,4 +39,26 @@ function newProjectFormUI(categories) {
   };
 }
 
-export { newProjectFormUI };
+function AddProject() {
+  const formulaireAjout = document.querySelector(".formulaire-ajout");
+  formulaireAjout.addEventListener("submit", function (event) {
+    event.preventDefault();
+    // Création de l'objet du nouvel projet
+    const newProject = {
+      imageUrl: parseInt(event.target.querySelector("[name=file]").value),
+      title: event.target.querySelector("name=titre").value,
+      category: event.target.querySelector("name=option").value,
+    };
+    // Création de la charge utile au format JSON
+    const chargeUtile = JSON.stringify(newProject);
+
+    //Appel de la fonction fetch avec toutes les informations nécessaires
+    fetch("FrontEnd/assets/lib/dependencies.js", {
+      method: "POST",
+      header: { "Content-type": "application/json" },
+      body: chargeUtile,
+    });
+  });
+}
+
+export { newProjectFormUI, AddProject };

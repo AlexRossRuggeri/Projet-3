@@ -42,7 +42,7 @@ document.querySelectorAll(".filter-button").forEach(function (boutonFiltre) {
     const projetsFiltres = projects.filter(function (project) {
       return (
         clickedbutton.textContent === "Tous" ||
-        project.category === clickedbutton.textContent
+        project.categoryId == clickedbutton.id
       );
     });
 

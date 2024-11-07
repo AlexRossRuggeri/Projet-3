@@ -1,8 +1,18 @@
 import * as fakeLoginService from "./auth/adapters/fakeAuthProvider.js";
 
 const authService = fakeLoginService;
+
 const projectService = {
   async fetchAllProjects() {
+    const response = await fetch("http://localhost:5678/api/works");
+
+    if (response.status != "200") {
+      return false;
+    }
+    const jsonreturn = response.json();
+    console.log(jsonreturn);
+    return jsonreturn;
+
     return [
       {
         title: "Abajour Tahina",
@@ -62,8 +72,13 @@ const projectService = {
     ];
   },
 };
+
 const categoryService = {
   async fetchAllCategories() {
+    const response = await fetch("http://localhost:5678/api/categories");
+
+    return response.json();
+
     return [
       { id: "object", name: "Objets" },
       { id: "appartement", name: "Appartements" },
