@@ -1,9 +1,17 @@
+//This function creates the form to add new projects
+
+//creates the user interface (UI) elements for the form that users will fill out to add new projects.
 function newProjectFormUI(categories) {
+  //Form element that holds the fields that users will fill out
   const form = document.createElement("form");
 
+  //gives the form an id
   form.id = "new_project_form";
+
+  //gives the form a class
   form.classList.add("formulaire-ajout");
 
+  //
   form.innerHTML = `
     <i class="fa-regular fa-image"></i>
     <input type="file" id="file" name="file" />
@@ -43,7 +51,8 @@ function AddProject() {
   const formulaireAjout = document.querySelector(".formulaire-ajout");
   formulaireAjout.addEventListener("submit", function (event) {
     event.preventDefault();
-    // Création de l'objet du nouvel projet
+
+    // Création de l'objet du nouveau projet
     const newProject = {
       imageUrl: parseInt(event.target.querySelector("[name=file]").value),
       title: event.target.querySelector("name=titre").value,
@@ -53,7 +62,7 @@ function AddProject() {
     const chargeUtile = JSON.stringify(newProject);
 
     //Appel de la fonction fetch avec toutes les informations nécessaires
-    fetch("FrontEnd/assets/lib/dependencies.js", {
+    fetch("", {
       method: "POST",
       header: { "Content-type": "application/json" },
       body: chargeUtile,
