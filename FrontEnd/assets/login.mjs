@@ -14,11 +14,13 @@ form.addEventListener("submit", async function (event) {
   const email = document.querySelector("form input#email").value;
   const password = document.querySelector("form input#password").value;
 
+  console.log(email, password);
+
   try {
     await authService.login(email, password);
     window.location.href = "./index.html";
   } catch (error) {
     errorMessage.textContent =
-      error.message || "Email ou mot de passe incorrect";
+      error.message || "Erreur dans l’identifiant ou le mot de passe";
   }
 });

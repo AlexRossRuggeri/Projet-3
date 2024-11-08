@@ -51,6 +51,7 @@ document.querySelectorAll(".filter-button").forEach(function (boutonFiltre) {
   });
 });
 
+// Opening the First Modal with the edit-link
 document.querySelector("#edit-link").addEventListener("click", () => {
   openModal("#modalProjectEditing");
 
@@ -61,6 +62,7 @@ document.querySelector("#edit-link").addEventListener("click", () => {
   editContentModal(gallery);
   editActionsModal(addProjectButton);
 
+  // Opening the Second Modal with the AddProjectButton
   addProjectButton.addEventListener("click", async () => {
     clearModal();
 
@@ -72,20 +74,42 @@ document.querySelector("#edit-link").addEventListener("click", () => {
     editContentModal(form);
     editActionsModal(submitButton);
 
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      const formData = new FormData(form);
+    // Submitting the Form to add a new project
+
+    const formAddProject = document.querySelector(".formulaire-ajout");
+
+    async function sendData() {
+      // Associate the FormData object with the form element
+      const formData = new FormData(formAddProject);
       for (const values of formData.values()) {
-        console.log(values);
+        // console.log(values);
       }
-      // 1 - Valider que le formulaire est bien valide
-      // 2 - Lancer une méthode sur projectService permettant d'ajouter le projet sur le service externe (dans le futur: l'api, pour le moment, c'est fake)
-      // 3 - Si ça s'est bien passé, trouver un moyen de revenir sur la première étape de la modale => liste des projets
-      // 4 - Si ça s'est bien passé, trouver un moyen de mettre à jour la gallerie sur la page principale
+
+      try {
+        const response = await fetch("http://localhost:5678/api/works", {
+          method: "POST",
+          // Set the FormData instance as the request body
+          body: formData,
+        });
+        console.log(await response.json());
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    // Take over form submission
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      sendData();
     });
+    // 1 - Valider que le formulaire est bien valide
+    // 2 - Lancer une méthode sur projectService permettant d'ajouter le projet sur le service externe (dans le futur: l'api, pour le moment, c'est fake)
+    // 3 - Si ça s'est bien passé, trouver un moyen de revenir sur la première étape de la modale => liste des projets
+    // 4 - Si ça s'est bien passé, trouver un moyen de mettre à jour la gallerie sur la page principale
   });
 });
 
+// Logout Button
 document.querySelector(".logout-link").addEventListener("click", async () => {
   try {
     await authService.logout();

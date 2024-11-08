@@ -70,4 +70,4 @@ function newProjectFormUI(categories) {
 //   });
 // }
 
-export { newProjectFormUI, AddProject };
+export { newProjectFormUI };

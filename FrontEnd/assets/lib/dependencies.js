@@ -1,6 +1,6 @@
-import * as fakeLoginService from "./auth/adapters/fakeAuthProvider.js";
+import * as apiAuthProvider from "./auth/adapters/apiAuthProvider.js";
 
-const authService = fakeLoginService;
+const authService = apiAuthProvider;
 
 const projectService = {
   async fetchAllProjects() {
