@@ -1,5 +1,3 @@
-// TODO: Quand ça sera à connecter avec l'API, faire la même chose que fakeLogin mais en faisant des appels http vers le serveur.
-
 async function login(email, password) {
   const data = { email: email, password: password };
 
@@ -12,20 +10,17 @@ async function login(email, password) {
   });
 
   const { token, userId } = response.json();
-  console.log(token, userId);
+
+  localStorage.setItem("auth", JSON.stringify({ token, userId }));
 }
 
 async function logout() {
-  localStorage.setItem("logged", false);
+  localStorage.removeItem("auth");
   return Promise.resolve();
 }
 
 function isLogged() {
-  return localStorage.getItem("logged") === "true";
+  return !!localStorage.getItem("auth");
 }
 
 export { login, logout, isLogged };
-
-// Il faut enregistrer userID, token et la variable isLogged
-
-// Quand je me déconnecte, je dois effacer tout ça

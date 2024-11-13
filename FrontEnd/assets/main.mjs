@@ -86,12 +86,7 @@ document.querySelector("#edit-link").addEventListener("click", () => {
       }
 
       try {
-        const response = await fetch("http://localhost:5678/api/works", {
-          method: "POST",
-          // Set the FormData instance as the request body
-          body: formData,
-        });
-        console.log(await response.json());
+        projectService.addProject(formData);
       } catch (e) {
         console.error(e);
       }
