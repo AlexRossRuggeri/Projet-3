@@ -11,18 +11,17 @@ function newProjectFormUI(categories) {
   //gives the form a class
   form.classList.add("formulaire-ajout");
 
-  //
   form.innerHTML = `
     <i class="fa-regular fa-image"></i>
-    <input type="file" id="file" name="file" />
-    <label for="Titre">Titre</label>
-    <input type="text" name="titre" /><br />
+    <input type="file" id="file" name="image" />
+    <label for="Title">Titre</label>
+    <input type="text" name="title" /><br />
     <label for="Catégorie">Catégorie</label>
   `;
 
   const categorySelect = document.createElement("select");
   categorySelect.id = "options";
-  categorySelect.name = "options";
+  categorySelect.name = "category";
 
   categories.forEach((category) => {
     const option = document.createElement("option");
@@ -46,28 +45,5 @@ function newProjectFormUI(categories) {
     submitButton,
   };
 }
-
-// function AddProject() {
-//   const formulaireAjout = document.querySelector(".formulaire-ajout");
-//   formulaireAjout.addEventListener("submit", function (event) {
-//     event.preventDefault();
-
-//     // Création de l'objet du nouveau projet
-//     const newProject = {
-//       imageUrl: parseInt(event.target.querySelector("[name=file]").value),
-//       title: event.target.querySelector("name=titre").value,
-//       category: event.target.querySelector("name=option").value,
-//     };
-//     // Création de la charge utile au format JSON
-//     const chargeUtile = JSON.stringify(newProject);
-
-//     //Appel de la fonction fetch avec toutes les informations nécessaires
-//     fetch("", {
-//       method: "POST",
-//       header: { "Content-type": "application/json" },
-//       body: chargeUtile,
-//     });
-//   });
-// }
 
 export { newProjectFormUI };

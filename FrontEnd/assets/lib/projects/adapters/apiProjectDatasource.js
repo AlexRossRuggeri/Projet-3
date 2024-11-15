@@ -1,3 +1,5 @@
+import { getAuthToken } from "../../auth/adapters/apiAuthProvider.js";
+
 async function fetchAllProjects() {
   const response = await fetch("http://localhost:5678/api/works");
 
@@ -5,20 +7,38 @@ async function fetchAllProjects() {
     return false;
   }
   const jsonreturn = response.json();
-  console.log(jsonreturn);
   return jsonreturn;
 }
 
-// 1/ Trouver où est-ce qu'on doit mettre le token dans une requête
-// 2/ Récupérer ce token + le userId à ajouter dans le body de la requête
-
 async function addProject(newProjectPayload) {
+  const token = getAuthToken();
+  console.log(token);
+  console.log(newProjectPayload);
+
+  if (!token) {
+    throw new Error("No authorization token found");
+  }
   const response = await fetch("http://localhost:5678/api/works", {
     method: "POST",
-    // Set the data as the request body
+    headers: {
+      "accept": "application/json",
+      "Authorization": `Bearer ${token}`,
+    },
     body: newProjectPayload,
   });
   console.log(await response.json());
 }
 
-export { fetchAllProjects, addProject };
+async function deleteProjectFromAPI(projectId) {
+  const token = getAuthToken();
+
+  if (!token) {
+    throw new Error("No authorization token found");
+  }
+  const response = await fetch(`http://localhost:5678/api/works/${projectId}`, {
+    method: "DELETE",
+  });
+  console.log(await response.json());
+}
+
+export { fetchAllProjects, addProject, deleteProjectFromAPI };

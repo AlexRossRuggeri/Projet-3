@@ -9,9 +9,13 @@ async function login(email, password) {
     body: JSON.stringify(data),
   });
 
-  const { token, userId } = response.json();
+  const { token, userId } = await response.json();
 
-  localStorage.setItem("auth", JSON.stringify({ token, userId }));
+  if (token && userId) {
+    localStorage.setItem("auth", JSON.stringify({ token, userId }));
+  } else {
+    throw new Error("Login failed");
+  }
 }
 
 async function logout() {
@@ -20,7 +24,40 @@ async function logout() {
 }
 
 function isLogged() {
-  return !!localStorage.getItem("auth");
+  if (!localStorage.getItem("auth")) {
+    return false;
+  }
+  let auth = {};
+  try {
+    auth = JSON.parse(localStorage.getItem("auth"));
+  } catch (e) {
+    return false;
+  }
+  return auth.token && auth.userId;
 }
 
-export { login, logout, isLogged };
+function getAuthToken() {
+  if (!isLogged()) {
+    return false;
+  }
+  const auth = JSON.parse(localStorage.getItem("auth"));
+  return auth ? auth.token : null;
+}
+
+async function fetchWithAuth(url, option = {}) {
+  const token = getAuthToken();
+
+  if (!token) throw new Error("No Authorization token found");
+
+  const headers = {
+    ...options.headers,
+    Authorization: "Bearer ${token}",
+  };
+
+  return fetch(url, {
+    ...options,
+    headers,
+  });
+}
+
+export { login, logout, isLogged, getAuthToken, fetchWithAuth };
