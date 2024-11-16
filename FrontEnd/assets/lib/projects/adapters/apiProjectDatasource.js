@@ -12,8 +12,6 @@ async function fetchAllProjects() {
 
 async function addProject(newProjectPayload) {
   const token = getAuthToken();
-  console.log(token);
-  console.log(newProjectPayload);
 
   if (!token) {
     throw new Error("No authorization token found");
@@ -26,7 +24,6 @@ async function addProject(newProjectPayload) {
     },
     body: newProjectPayload,
   });
-  console.log(await response.json());
 }
 
 async function deleteProjectFromAPI(projectId) {
@@ -37,8 +34,11 @@ async function deleteProjectFromAPI(projectId) {
   }
   const response = await fetch(`http://localhost:5678/api/works/${projectId}`, {
     method: "DELETE",
+    headers: {
+      "accept": "application/json",
+      "Authorization": `Bearer ${token}`,
+    },
   });
-  console.log(await response.json());
 }
 
 export { fetchAllProjects, addProject, deleteProjectFromAPI };

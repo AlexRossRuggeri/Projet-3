@@ -1,3 +1,5 @@
+import { deleteProjectFromAPI } from "../projects/adapters/apiProjectDatasource.js";
+
 let gallery;
 
 function populateGallery(projects) {

@@ -5,14 +5,13 @@ import * as projectService from "./projects/adapters/apiProjectDatasource.js";
 const categoryService = {
   async fetchAllCategories() {
     const response = await fetch("http://localhost:5678/api/categories");
-
     return response.json();
 
-    return [
-      { id: "object", name: "Objets" },
-      { id: "appartement", name: "Appartements" },
-      { id: "hotel_restaurant", name: "Hotels & restaurants" },
-    ];
+    // return [
+    //   { id: "object", name: "Objets" },
+    //   { id: "appartement", name: "Appartements" },
+    //   { id: "hotel_restaurant", name: "Hotels & restaurants" },
+    // ];
   },
 };
 

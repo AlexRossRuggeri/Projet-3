@@ -76,14 +76,9 @@ document.querySelector("#edit-link").addEventListener("click", () => {
 
     // Submitting the Form to add a new project
 
-    const formAddProject = document.querySelector(".formulaire-ajout");
-
     async function sendData() {
       // Associate the FormData object with the form element
-      const formData = new FormData(formAddProject);
-      for (const values of formData.values()) {
-        // console.log(values);
-      }
+      const formData = new FormData(form);
 
       try {
         projectService.addProject(formData);

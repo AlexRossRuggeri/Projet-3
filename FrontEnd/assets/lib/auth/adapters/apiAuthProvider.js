@@ -44,20 +44,4 @@ function getAuthToken() {
   return auth ? auth.token : null;
 }
 
-async function fetchWithAuth(url, option = {}) {
-  const token = getAuthToken();
-
-  if (!token) throw new Error("No Authorization token found");
-
-  const headers = {
-    ...options.headers,
-    Authorization: "Bearer ${token}",
-  };
-
-  return fetch(url, {
-    ...options,
-    headers,
-  });
-}
-
-export { login, logout, isLogged, getAuthToken, fetchWithAuth };
+export { login, logout, isLogged, getAuthToken };
