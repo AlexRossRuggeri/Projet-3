@@ -19,6 +19,10 @@ function enableEditModeWhenLogged() {
 }
 
 function displayProjects(projects) {
+  const galleryContainer = document.querySelector(".gallery");
+
+  galleryContainer.innerHTML = " ";
+
   projects.forEach((projects) => {
     const figure = document.createElement("figure");
     const img = document.createElement("img");
@@ -31,7 +35,7 @@ function displayProjects(projects) {
     figure.appendChild(img);
     figure.appendChild(caption);
 
-    document.querySelector(".gallery").appendChild(figure);
+    galleryContainer.appendChild(figure);
   });
 }
 
@@ -98,6 +102,38 @@ document.querySelector("#edit-link").addEventListener("click", () => {
     // 4 - Si ça s'est bien passé, trouver un moyen de mettre à jour la gallerie sur la page principale
   });
 });
+
+// Return Button
+
+document
+  .querySelector(".js-modal-return")
+  .addEventListener("click", async () => {
+    clearModal();
+
+    await openModal("#modalProjectEditing");
+
+    const { title, gallery, addProjectButton } =
+      projectEditionGalleryUI(projects);
+
+    editTitleModal(title);
+    editContentModal(gallery);
+    editActionsModal(addProjectButton);
+
+    // Réattacher l'événement au bouton "addProjectButton"
+    addProjectButton.addEventListener("click", async () => {
+      clearModal();
+
+      const { title, form, submitButton } = newProjectFormUI(
+        await categoryService.fetchAllCategories()
+      );
+
+      editTitleModal(title);
+      editContentModal(form);
+      editActionsModal(submitButton);
+    });
+
+    displayProjects(projects);
+  });
 
 // Logout Button
 document.querySelector(".logout-link").addEventListener("click", async () => {
