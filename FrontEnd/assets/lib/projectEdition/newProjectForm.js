@@ -41,7 +41,7 @@ function newProjectFormUI(categories) {
   form.appendChild(categorySelect);
 
   const submitButton = document.createElement("button");
-  // submitButton.classList.add("");
+  submitButton.classList.add("formulaire-ajout-button");
   submitButton.type = "submit";
   submitButton.setAttribute("form", form.id);
   submitButton.textContent = "Valider";
