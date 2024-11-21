@@ -574,3 +574,73 @@ label {
 }
 
 /* Modal New Project Form */
+
+.img-area {
+  background-color: #e8f1f6;
+  color: #b9c5cc;
+  width: 420px;
+  height: auto;
+  border-radius: 3px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  margin-bottom: 30px;
+}
+
+.img-area:hover {
+  background-color: #d1d9dd;
+}
+
+.img-area .container {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+}
+
+.img-area i {
+  font-size: 76px;
+  padding-top: 22.5px;
+  padding-bottom: 12px;
+}
+
+.custom-file-label {
+  display: flex;
+  padding-bottom: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 15px;
+  border: 1px solid #cbd6dc;
+  color: #306685;
+  background-color: #cbd6dc;
+  font-weight: 500;
+  width: 173px;
+  height: 36px;
+  border-radius: 50px;
+  margin-bottom: 7px;
+  transition: background-color 0.3s ease;
+}
+
+.img-area:hover .custom-file-label {
+  background-color: #b9c5cc;
+}
+
+.img-area p {
+  font-size: 10px;
+  padding-bottom: 19px;
+  color: #444444;
+}
+
+#preview {
+  display: none;
+  max-width: 100%;
+  max-height: 200px; /* Adjust this height as needed */
+  border-radius: 3px;
+  margin-top: 10px;
+}
+
+/* Hide the default file input */
+#file {
+  display: none;
+}

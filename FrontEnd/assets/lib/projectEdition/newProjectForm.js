@@ -12,11 +12,18 @@ function newProjectFormUI(categories) {
   form.classList.add("formulaire-ajout");
 
   form.innerHTML = `
-    <i class="fa-regular fa-image"></i>
+  <label for="file" class="img-area">
+    <div class="container">
+      <i class="fa-regular fa-image"></i>
+      <span class="custom-file-label">+ Ajouter Photo</span>
+      <img id="preview" src="#" alt="Preview"/>
+    </div>
+      <p>Formats acceptés : jpg, png (taille maximale : 4 Mo)</p>
+  </label>
     <input type="file" id="file" name="image" />
-    <label for="Title">Titre</label>
+  <label for="Title">Titre</label>
     <input type="text" name="title" /><br />
-    <label for="Catégorie">Catégorie</label>
+  <label for="Catégorie">Catégorie</label>
   `;
 
   const categorySelect = document.createElement("select");
