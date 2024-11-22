@@ -438,6 +438,25 @@ body.edit-mode .edit-title {
   cursor: pointer;
 }
 
+.js-modal-return {
+  display: none;
+  color: #000;
+  float: left;
+  font-size: 28px;
+  height: 24px;
+  width: 24px;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  border: none;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.js-modal-return.show {
+  display: flex;
+}
+
 .title-modal {
   font-family: Work Sans;
   font-size: 26px;
@@ -635,14 +654,6 @@ label {
   font-size: 10px;
   padding-bottom: 19px;
   color: #444444;
-}
-
-#preview {
-  display: none;
-  max-width: 100%;
-  max-height: 200px; /* Adjust this height as needed */
-  border-radius: 3px;
-  margin-top: 10px;
 }
 
 /* Hide the default file input */
