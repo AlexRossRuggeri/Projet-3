@@ -10,6 +10,7 @@ import {
   editTitleModal,
   editContentModal,
   editActionsModal,
+  showReturnModalButton,
 } from "./lib/modal.js";
 import { projectEditionGalleryUI } from "./lib/projectEdition/gallery.js";
 import { newProjectFormUI } from "./lib/projectEdition/newProjectForm.js";
@@ -39,6 +40,59 @@ function displayProjects(projects) {
   });
 }
 
+function displayModalProjectEdition() {
+  openModal("#modalProjectEditing");
+
+  const { title, gallery, addProjectButton } =
+    projectEditionGalleryUI(projects);
+
+  editTitleModal(title);
+  editContentModal(gallery);
+  editActionsModal(addProjectButton);
+
+  // Opening the Second Modal with the AddProjectButton
+  addProjectButton.addEventListener("click", displayModalNewProjectForm);
+}
+
+async function displayModalNewProjectForm() {
+  clearModal();
+
+  const { title, form, submitButton } = newProjectFormUI(
+    await categoryService.fetchAllCategories()
+  );
+
+  editTitleModal(title);
+  editContentModal(form);
+  editActionsModal(submitButton);
+  showReturnModalButton(onReturnButtonClicked);
+
+  // Submitting the Form to add a new project
+  // Take over form submission
+  form.addEventListener("submit", (event) =>
+    onNewProjectSubmitted(event, form)
+  );
+}
+
+function onReturnButtonClicked() {
+  displayModalProjectEdition();
+}
+
+async function onNewProjectSubmitted(event, form) {
+  // 1 - Valider que le formulaire est bien valide
+  // 2 - Lancer une méthode sur projectService permettant d'ajouter le projet sur le service externe (dans le futur: l'api, pour le moment, c'est fake)
+  // 3 - Si ça s'est bien passé, trouver un moyen de revenir sur la première étape de la modale => liste des projets
+  // 4 - Si ça s'est bien passé, trouver un moyen de mettre à jour la gallerie sur la page principale
+  event.preventDefault();
+  // Associate the FormData object with the form element
+  const formData = new FormData(form);
+
+  try {
+    await projectService.addProject(formData);
+  } catch (e) {
+    console.error(e);
+  }
+}
+
 //Gestion des Boutons
 document.querySelectorAll(".filter-button").forEach(function (boutonFiltre) {
   boutonFiltre.addEventListener("click", function (event) {
@@ -56,84 +110,9 @@ document.querySelectorAll(".filter-button").forEach(function (boutonFiltre) {
 });
 
 // Opening the First Modal with the edit-link
-document.querySelector("#edit-link").addEventListener("click", () => {
-  openModal("#modalProjectEditing");
-
-  const { title, gallery, addProjectButton } =
-    projectEditionGalleryUI(projects);
-
-  editTitleModal(title);
-  editContentModal(gallery);
-  editActionsModal(addProjectButton);
-
-  // Opening the Second Modal with the AddProjectButton
-  addProjectButton.addEventListener("click", async () => {
-    clearModal();
-
-    const { title, form, submitButton } = newProjectFormUI(
-      await categoryService.fetchAllCategories()
-    );
-
-    editTitleModal(title);
-    editContentModal(form);
-    editActionsModal(submitButton);
-
-    // Submitting the Form to add a new project
-
-    async function sendData() {
-      // Associate the FormData object with the form element
-      const formData = new FormData(form);
-
-      try {
-        projectService.addProject(formData);
-      } catch (e) {
-        console.error(e);
-      }
-    }
-
-    // Take over form submission
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      sendData();
-    });
-    // 1 - Valider que le formulaire est bien valide
-    // 2 - Lancer une méthode sur projectService permettant d'ajouter le projet sur le service externe (dans le futur: l'api, pour le moment, c'est fake)
-    // 3 - Si ça s'est bien passé, trouver un moyen de revenir sur la première étape de la modale => liste des projets
-    // 4 - Si ça s'est bien passé, trouver un moyen de mettre à jour la gallerie sur la page principale
-  });
-});
-
-// Return Button
-
 document
-  .querySelector(".js-modal-return")
-  .addEventListener("click", async () => {
-    clearModal();
-
-    await openModal("#modalProjectEditing");
-
-    const { title, gallery, addProjectButton } =
-      projectEditionGalleryUI(projects);
-
-    editTitleModal(title);
-    editContentModal(gallery);
-    editActionsModal(addProjectButton);
-
-    // Réattacher l'événement au bouton "addProjectButton"
-    addProjectButton.addEventListener("click", async () => {
-      clearModal();
-
-      const { title, form, submitButton } = newProjectFormUI(
-        await categoryService.fetchAllCategories()
-      );
-
-      editTitleModal(title);
-      editContentModal(form);
-      editActionsModal(submitButton);
-    });
-
-    displayProjects(projects);
-  });
+  .querySelector("#edit-link")
+  .addEventListener("click", displayModalProjectEdition);
 
 // Logout Button
 document.querySelector(".logout-link").addEventListener("click", async () => {
