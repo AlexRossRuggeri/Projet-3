@@ -1,4 +1,4 @@
-//This function creates the form to add new projects
+//This module creates the form to add new projects
 
 //creates the user interface (UI) elements for the form that users will fill out to add new projects.
 function newProjectFormUI(categories) {
