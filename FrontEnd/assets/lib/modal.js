@@ -5,6 +5,7 @@ const focusableSelector = "button, a, input, textarea";
 
 const openModal = async function (modalId) {
   modal = document.querySelector(modalId);
+  clearModal();
 
   if (!modal) throw new Error('Modal "' + modalId + '" not found!');
 
@@ -44,6 +45,16 @@ const closeModal = function () {
     modal.classList.remove("modal-open", "modal-closing");
     clearModal();
     modal = null;
+  });
+};
+
+const showReturnModalButton = function (callback) {
+  const modalReturnBtn = modal.querySelector(".js-modal-return");
+
+  modalReturnBtn.classList.add("show");
+  modalReturnBtn.addEventListener("click", () => {
+    callback();
+    modalReturnBtn.classList.remove("show");
   });
 };
 
@@ -107,4 +118,5 @@ export {
   editContentModal,
   editActionsModal,
   clearModal,
+  showReturnModalButton,
 };
