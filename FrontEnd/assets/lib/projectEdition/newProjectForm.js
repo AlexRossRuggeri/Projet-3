@@ -12,18 +12,25 @@ function newProjectFormUI(categories) {
   form.classList.add("formulaire-ajout");
 
   form.innerHTML = `
-  <label for="file" class="img-area">
-    <div class="container">
-      <i class="fa-regular fa-image"></i>
-      <span class="custom-file-label">+ Ajouter Photo</span>
-      <img id="preview" src="#" alt="Preview"/>
+    <div class="img-area">
+      <label for="file">
+        <i class="fa-regular fa-image"></i>
+        <div class="custom-file-label">
+          <span class="content-file-label">+ Ajouter Photo</span>
+        </div>
+        <img id="preview" src="#" alt="Preview" />
+        <p>Formats acceptés : jpg, png (taille maximale : 4 Mo)</p>
+      </label>
+        <input
+          type="file"
+          id="file"
+          name="image"
+          accept="image/jpeg, image/png"
+        />
     </div>
-      <p>Formats acceptés : jpg, png (taille maximale : 4 Mo)</p>
-  </label>
-    <input type="file" id="file" name="image" />
-  <label for="Title">Titre</label>
-    <input type="text" name="title" /><br />
-  <label for="Catégorie">Catégorie</label>
+      <label for="title">Titre</label>
+        <input type="text" id="title" name="title" required />
+      <label for="category">Catégorie</label>
   `;
 
   const categorySelect = document.createElement("select");
@@ -53,4 +60,27 @@ function newProjectFormUI(categories) {
   };
 }
 
-export { newProjectFormUI };
+const imagePreview = () => {
+  document.getElementById("file").addEventListener("change", function (event) {
+    const preview = document.getElementById("preview");
+    const file = event.target.files[0];
+    const imgArea = document.querySelector(".img-area");
+
+    if (file && (file.type === "image/jpeg" || file.type === "image/png")) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        preview.src = e.target.result;
+        preview.style.display = "block";
+        imgArea.classList.add("hidden");
+      };
+      reader.readAsDataURL(file);
+    } else {
+      preview.src = "";
+      preview.style.display = "none";
+      imgArea.classList.remove("hidden");
+      alert("Veuillez sélectionner une image au format JPG ou PNG.");
+    }
+  });
+};
+
+export { newProjectFormUI, imagePreview };

@@ -560,6 +560,12 @@ body.edit-mode .edit-title {
   border-radius: 2px;
 }
 
+.content-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .formulaire-ajout {
   display: flex;
   flex-direction: column;
@@ -611,16 +617,23 @@ label {
   font-weight: bold;
   transition: background-color 0.3s ease;
   margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 .img-area:hover {
   background-color: #d1d9dd;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  transform: scale(1.02);
 }
 
-.img-area .container {
-  display: flex;
-  flex-direction: column;
-  justify-self: center;
+.img-area img {
+  max-width: 100%;
+  max-height: 200px;
+  object-fit: contain;
 }
 
 .img-area i {
@@ -631,7 +644,11 @@ label {
 
 .custom-file-label {
   display: flex;
-  padding-bottom: 0;
+  justify-content: center;
+}
+
+.content-file-label {
+  display: flex;
   align-items: center;
   justify-content: center;
   padding: 5px 15px;
@@ -646,7 +663,7 @@ label {
   transition: background-color 0.3s ease;
 }
 
-.img-area:hover .custom-file-label {
+.img-area:hover .content-file-label {
   background-color: #b9c5cc;
 }
 
@@ -675,4 +692,14 @@ label {
 
 .formulaire-ajout-button:hover {
   background-color: #444444;
+}
+
+#preview {
+  display: none; /* Hide the preview image by default */
+}
+
+.img-area.hidden i,
+.img-area.hidden .custom-file-label,
+.img-area.hidden p {
+  display: none;
 }
