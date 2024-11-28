@@ -17,30 +17,10 @@ import {
   newProjectFormUI,
   imagePreview,
 } from "./lib/projectEdition/newProjectForm.js";
+import { fetchFilterCategories, displayProjects } from "./functions.js";
 
 function enableEditModeWhenLogged() {
   document.body.classList.toggle("edit-mode", authService.isLogged());
-}
-
-function displayProjects(projects) {
-  const galleryContainer = document.querySelector(".gallery");
-
-  galleryContainer.innerHTML = " ";
-
-  projects.forEach((projects) => {
-    const figure = document.createElement("figure");
-    const img = document.createElement("img");
-    const caption = document.createElement("figcaption");
-
-    img.src = projects.imageUrl;
-    img.alt = projects.title;
-    caption.textContent = projects.title;
-
-    figure.appendChild(img);
-    figure.appendChild(caption);
-
-    galleryContainer.appendChild(figure);
-  });
 }
 
 function displayModalProjectEdition() {
@@ -97,22 +77,6 @@ async function onNewProjectSubmitted(event, form) {
   }
 }
 
-//Gestion des Boutons
-document.querySelectorAll(".filter-button").forEach(function (boutonFiltre) {
-  boutonFiltre.addEventListener("click", function (event) {
-    const clickedbutton = event.target;
-    const projetsFiltres = projects.filter(function (project) {
-      return (
-        clickedbutton.textContent === "Tous" ||
-        project.categoryId == clickedbutton.id
-      );
-    });
-
-    document.querySelector(".gallery").innerHTML = "";
-    displayProjects(projetsFiltres);
-  });
-});
-
 // Opening the First Modal with the edit-link
 document
   .querySelector("#edit-link")
@@ -131,6 +95,6 @@ document.querySelector(".logout-link").addEventListener("click", async () => {
 
 // Execution
 const projects = await projectService.fetchAllProjects();
-
+fetchFilterCategories(projects);
 displayProjects(projects);
 enableEditModeWhenLogged();
