@@ -13,7 +13,10 @@ import {
   showReturnModalButton,
 } from "./lib/modal.js";
 import { projectEditionGalleryUI } from "./lib/projectEdition/gallery.js";
-import { newProjectFormUI } from "./lib/projectEdition/newProjectForm.js";
+import {
+  newProjectFormUI,
+  imagePreview,
+} from "./lib/projectEdition/newProjectForm.js";
 
 function enableEditModeWhenLogged() {
   document.body.classList.toggle("edit-mode", authService.isLogged());
@@ -68,9 +71,10 @@ async function displayModalNewProjectForm() {
 
   // Submitting the Form to add a new project
   // Take over form submission
-  form.addEventListener("submit", (event) =>
-    onNewProjectSubmitted(event, form)
-  );
+  form.addEventListener("submit", (event) => {
+    onNewProjectSubmitted(event, form);
+  });
+  imagePreview();
 }
 
 function onReturnButtonClicked() {
@@ -87,7 +91,7 @@ async function onNewProjectSubmitted(event, form) {
   const formData = new FormData(form);
 
   try {
-    await projectService.addProject(formData);
+    const result = await projectService.addProject(formData);
   } catch (e) {
     console.error(e);
   }
