@@ -1,3 +1,5 @@
+//Logs in the user and stores their credentials//
+
 async function login(email, password) {
   const data = { email: email, password: password };
 
@@ -18,10 +20,14 @@ async function login(email, password) {
   }
 }
 
+//Logs out the user by clearing the stored credentials//
+
 async function logout() {
   localStorage.removeItem("auth");
   return Promise.resolve();
 }
+
+//Checks if the user is currently logged in//
 
 function isLogged() {
   if (!localStorage.getItem("auth")) {
@@ -36,6 +42,8 @@ function isLogged() {
   return auth.token && auth.userId;
 }
 
+//Retrieves the stored authentication token for use in the API calls//
+
 function getAuthToken() {
   if (!isLogged()) {
     return false;
@@ -43,5 +51,7 @@ function getAuthToken() {
   const auth = JSON.parse(localStorage.getItem("auth"));
   return auth ? auth.token : null;
 }
+
+//Exports the functions//
 
 export { login, logout, isLogged, getAuthToken };
