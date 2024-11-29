@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "dev": "vite",
+    "live": "vite preview --outDir ./"
+  },
+  "devDependencies": {
+    "vite": "^6.0.1"
+  }
+}
