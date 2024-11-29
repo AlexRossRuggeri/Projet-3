@@ -30,14 +30,12 @@ async function fetchFilterCategories(projects) {
 
     const filterMenu = document.querySelector(".filter-menu");
 
-    // Add a "Tous" button first
     const allButton = document.createElement("button");
     allButton.classList.add("filter-button");
     allButton.id = "";
     allButton.textContent = "Tous";
     filterMenu.appendChild(allButton);
 
-    // Dynamically add buttons for each category
     categories.forEach((category) => {
       const button = document.createElement("button");
       button.classList.add("filter-button");
@@ -46,7 +44,6 @@ async function fetchFilterCategories(projects) {
       filterMenu.appendChild(button);
     });
 
-    // Optional: Add event listeners to the buttons
     document
       .querySelectorAll(".filter-button")
       .forEach(function (boutonFiltre) {
@@ -69,5 +66,4 @@ async function fetchFilterCategories(projects) {
   }
 }
 
-// Export the function on page load
 export { fetchFilterCategories, displayProjects };
