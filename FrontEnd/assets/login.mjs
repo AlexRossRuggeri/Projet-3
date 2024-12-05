@@ -1,8 +1,5 @@
 import { authService } from "./lib/dependencies.js";
 
-const validEmail = "alexandre.rossruggeri@gmail.com";
-const validPassword = "password123";
-
 const form = document.querySelector("form");
 const errorMessage = document.getElementById("errorMessage");
 
