@@ -1,14 +1,8 @@
-//This module creates the form to add new projects
+// This function dynamically generates a UI form for adding a new project//
 
-//creates the user interface (UI) elements for the form that users will fill out to add new projects.
 function newProjectFormUI(categories) {
-  //Form element that holds the fields that users will fill out
   const form = document.createElement("form");
-
-  //gives the form an id
   form.id = "new_project_form";
-
-  //gives the form a class
   form.classList.add("formulaire-ajout");
 
   form.innerHTML = `
@@ -60,6 +54,8 @@ function newProjectFormUI(categories) {
   };
 }
 
+// This function adds functionality to preview an image selected via the file input field//
+
 const imagePreview = () => {
   document.getElementById("file").addEventListener("change", function (event) {
     const preview = document.getElementById("preview");
@@ -83,4 +79,24 @@ const imagePreview = () => {
   });
 };
 
-export { newProjectFormUI, imagePreview };
+//This function clears the form after subimitting a project //
+
+function clearForm() {
+  const form = document.querySelector(".formulaire-ajout");
+  if (form) {
+    form.reset();
+  }
+
+  const fileInput = document.getElementById("file");
+  const preview = document.getElementById("preview");
+  const imgArea = document.querySelector(".img-area");
+
+  if (fileInput && preview && imgArea) {
+    fileInput.value = "";
+    preview.src = "";
+    preview.style.display = "none";
+    imgArea.classList.remove("hidden");
+  }
+}
+
+export { newProjectFormUI, imagePreview, clearForm };
