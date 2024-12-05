@@ -12,10 +12,14 @@ import {
   editActionsModal,
   showReturnModalButton,
 } from "./lib/modal.js";
-import { projectEditionGalleryUI } from "./lib/projectEdition/gallery.js";
+import {
+  projectEditionGalleryUI,
+  populateGallery,
+} from "./lib/projectEdition/gallery.js";
 import {
   newProjectFormUI,
   imagePreview,
+  clearForm,
 } from "./lib/projectEdition/newProjectForm.js";
 import { fetchFilterCategories, displayProjects } from "./functions.js";
 
@@ -62,8 +66,6 @@ function onReturnButtonClicked() {
 }
 
 async function onNewProjectSubmitted(event, form) {
-  // 1 - Valider que le formulaire est bien valide
-  // 2 - Lancer une méthode sur projectService permettant d'ajouter le projet sur le service externe (dans le futur: l'api, pour le moment, c'est fake)
   // 3 - Si ça s'est bien passé, trouver un moyen de revenir sur la première étape de la modale => liste des projets
   // 4 - Si ça s'est bien passé, trouver un moyen de mettre à jour la gallerie sur la page principale
   event.preventDefault();
@@ -75,6 +77,7 @@ async function onNewProjectSubmitted(event, form) {
   } catch (e) {
     console.error(e);
   }
+  clearForm();
 }
 
 // Opening the First Modal with the edit-link
