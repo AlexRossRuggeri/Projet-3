@@ -27,4 +27,6 @@ function isLogged() {
   return localStorage.getItem("logged") === "true";
 }
 
+//Exports the functions//
+
 export { login, logout, isLogged };
