@@ -1,6 +1,11 @@
 import { deleteProjectFromAPI } from "../projects/adapters/apiProjectDatasource.js";
+import { displayProjects } from "../../functions.js";
 
 let gallery;
+
+// This function dynamically populates the gallery with project elements //
+// It displays each project as a visual element (with an image and a remove button) //
+// and sets up event listeners for removing projects //
 
 function populateGallery(projects) {
   gallery.innerHTML = " ";
@@ -18,8 +23,6 @@ function populateGallery(projects) {
 
     gallery.appendChild(projectElement);
 
-    const projectId = project.id;
-
     projectElement
       .querySelector(".remove-project")
       .addEventListener("click", async (event) => {
@@ -28,9 +31,14 @@ function populateGallery(projects) {
 
         projects.splice(index, 1);
         populateGallery(projects);
+        displayProjects(projects);
       });
   });
 }
+
+// This function initializes and sets up the entire gallery user interface (UI) //
+// It serves as the main entry point for displaying and interacting with the project //
+// gallery within the modal window//
 
 function projectEditionGalleryUI(projects) {
   gallery = document.createElement("div");
@@ -49,4 +57,4 @@ function projectEditionGalleryUI(projects) {
   };
 }
 
-export { projectEditionGalleryUI };
+export { projectEditionGalleryUI, populateGallery };
