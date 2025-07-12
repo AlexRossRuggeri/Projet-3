@@ -12,7 +12,7 @@ async function loginRequest(email, password) {
   });
 
   if (!response.ok) {
-    throw new Error('Login failed');
+    throw new Error('Incorrect email or password');
   }
 
   return response.json();
