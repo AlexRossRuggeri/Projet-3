@@ -546,6 +546,7 @@ body.edit-mode .edit-title {
   margin: 0;
   position: relative;
 }
+
 .project img {
   width: 76.86px;
   height: 102.57px;
@@ -575,7 +576,6 @@ body.edit-mode .edit-title {
   justify-self: center;
   max-width: 420px;
   width: auto;
-  border-bottom: 1px solid #b3b3b3;
   margin-bottom: 32px;
 }
 
@@ -600,7 +600,7 @@ label {
   width: 420px;
   box-shadow: 0px 4px 14px 0px #00000017;
   border: none;
-  margin-bottom: 47px;
+  margin-bottom: 15px;
   justify-content: center;
   align-items: center;
 }
@@ -678,6 +678,13 @@ label {
 /* Hide the default file input */
 #file {
   display: none;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  width: 100%;
+  margin: 32px auto;
 }
 
 .formulaire-ajout-button {
