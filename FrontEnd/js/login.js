@@ -16,6 +16,6 @@ form.addEventListener('submit', async function (event) {
     await authLogin(email, password);
     window.location.href = '../index.html';
   } catch (error) {
-    errorMessage.textContent = error.message || 'Incorrect email or password';
+    errorMessage.textContent = error.message;
   }
 });
