@@ -53,17 +53,25 @@ function closeModal() {
   });
 }
 
-function setModalContent({ title = '', content = null, actions = null }) {
+function setModalContent({
+  title = '',
+  content = null,
+  actions = null,
+  button = null,
+}) {
   if (!modal) return;
 
   modal.querySelector('.title-modal').textContent = title;
 
+  const buttonContainer = modal.querySelector('.modal-button-wrapper');
   const contentContainer = modal.querySelector('.content-modal');
   const actionsContainer = modal.querySelector('.actions-modal');
 
+  buttonContainer.innerHTML = '';
   contentContainer.innerHTML = '';
   actionsContainer.innerHTML = '';
 
+  if (button) buttonContainer.appendChild(button);
   if (content) contentContainer.appendChild(content);
   if (actions) actionsContainer.appendChild(actions);
 
@@ -74,6 +82,7 @@ function setModalContent({ title = '', content = null, actions = null }) {
 function clearModalContent() {
   if (!modal) return;
   setModalContent({
+    button: null,
     title: '',
     content: null,
     actions: null,
