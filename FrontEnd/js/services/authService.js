@@ -7,8 +7,6 @@ async function login(email, password) {
 
   if (token && userId) {
     localStorage.setItem(AUTH_KEY, JSON.stringify({ token, userId }));
-  } else {
-    throw new Error('Login failed');
   }
 }
 
