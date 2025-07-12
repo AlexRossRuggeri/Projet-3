@@ -22,7 +22,7 @@ async function initModalUploadView({ onBack, onUploadSuccess }) {
 
   const fileInput = document.createElement('input');
   fileInput.type = 'file';
-  fileInput.accept = 'image/jpeg, image/png';
+  fileInput.accept = 'image/jpeg, image/jpg, image/png';
   fileInput.id = 'file';
 
   const titleLabel = document.createElement('label');
@@ -33,9 +33,12 @@ async function initModalUploadView({ onBack, onUploadSuccess }) {
   titleInput.name = 'title';
 
   const categoryLabel = document.createElement('label');
+  categoryLabel.setAttribute('for', 'category');
   categoryLabel.textContent = 'Catégorie';
   const categorySelect = document.createElement('select');
   categorySelect.name = 'category';
+
+  const hr = document.createElement('hr');
 
   const submitButton = document.createElement('button');
   submitButton.textContent = 'Valider';
@@ -48,6 +51,7 @@ async function initModalUploadView({ onBack, onUploadSuccess }) {
   form.appendChild(titleInput);
   form.appendChild(categoryLabel);
   form.appendChild(categorySelect);
+  form.appendChild(hr);
   form.appendChild(submitButton);
 
   const preview = imgArea.querySelector('.preview');
@@ -111,9 +115,10 @@ async function initModalUploadView({ onBack, onUploadSuccess }) {
   returnButton.addEventListener('click', onBack);
 
   setModalContent({
+    button: returnButton,
     title,
     content: form,
-    actions: returnButton,
+    actions: null,
   });
 }
 
