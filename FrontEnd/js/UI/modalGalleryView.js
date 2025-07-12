@@ -19,9 +19,11 @@ function initModalGalleryView(projects, onAddClick, onProjectDeleted) {
     deleteButton.type = 'button';
     deleteButton.classList.add('delete-project');
     deleteButton.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
+
     deleteButton.addEventListener('click', async (event) => {
       event.preventDefault();
       event.stopPropagation();
+
       try {
         await deleteProject(project.id);
         figure.remove();
@@ -56,6 +58,7 @@ function initModalGalleryView(projects, onAddClick, onProjectDeleted) {
     title,
     content,
     actions,
+    button: null,
   });
 }
 
