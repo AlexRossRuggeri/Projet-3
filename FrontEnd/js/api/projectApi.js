@@ -26,7 +26,7 @@ async function deleteProjectFromApi(projectId) {
     throw new Error(`Failure to delete project from API: ${response.status}`);
   }
 
-  return true;
+  return;
 }
 
 async function addProjectToApi(formData) {
