@@ -5,15 +5,27 @@ import {
 } from '../api/projectApi.js';
 
 async function fetchAllProjects() {
-  return await fetchProjectsFromApi();
+  try {
+    return await fetchProjectsFromApi();
+  } catch (error) {
+    console.error('Failed to fetch projects:', error);
+  }
 }
 
 async function deleteProject(projectId) {
-  return await deleteProjectFromApi(projectId);
+  try {
+    return await deleteProjectFromApi(projectId);
+  } catch (error) {
+    console.error(`Failed to delete project with ID ${projectId}:`, error);
+  }
 }
 
 async function addProject(formData) {
-  return await addProjectToApi(formData);
+  try {
+    return await addProjectToApi(formData);
+  } catch (error) {
+    console.error('Failed to add project:', error);
+  }
 }
 
 export { fetchAllProjects, deleteProject, addProject };
