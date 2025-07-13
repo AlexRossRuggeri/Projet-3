@@ -1,8 +1,8 @@
-import { openModal } from '../utils/modal';
-import { initModalGalleryView } from './modalGalleryView';
-import { initModalUploadView } from './modalUploadView';
-import { fetchAllProjects } from '../services/projectService';
-import { refreshMainGallery } from './gallery';
+import { openModal } from '../utils/modal.js';
+import { initModalGalleryView } from '../views/modalGalleryView.js';
+import { initModalUploadView } from '../views/modalUploadView.js';
+import { refreshMainGallery } from '../views/gallery.js';
+import { fetchAllProjects } from '../services/projectService.js';
 
 let modalElement = null;
 

@@ -1,4 +1,4 @@
-import { fetchAllProjects } from '../services/projectService';
+import { fetchAllProjects } from '../services/projectService.js';
 
 function displayProjects(projects) {
   const gallery = document.querySelector('.gallery');

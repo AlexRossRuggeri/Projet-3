@@ -1,4 +1,4 @@
-import { login as authLogin } from './services/authService.js';
+import { login as authLogin } from '../services/authService.js';
 
 const form = document.querySelector('form');
 const errorMessage = document.getElementById('errorMessage');

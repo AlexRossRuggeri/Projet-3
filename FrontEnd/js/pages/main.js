@@ -1,10 +1,9 @@
-import { fetchAllProjects } from './services/projectService';
-import { displayProjects } from './UI/gallery';
-import { initFilters } from './UI/filters';
-import { isLogged } from './services/authService.js';
-import { bindLogoutLink } from './UI/auth.js';
-import { openModal, closeModal } from './utils/modal.js';
-import { showProjectEditingModal } from './UI/modalController.js';
+import { fetchAllProjects } from '../services/projectService.js';
+import { displayProjects } from '../views/gallery.js';
+import { initFilters } from '../views/filters.js';
+import { isLogged } from '../services/authService.js';
+import { bindLogoutLink } from '../views/auth.js';
+import { showProjectEditingModal } from '../controllers/modalController.js';
 
 function enableEditModeWhenLogged() {
   document.body.classList.toggle('edit-mode', isLogged());
